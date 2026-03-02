@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wajeeha's Legacy | By Mehtab Ali Shah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Nastaliq+Urdu&family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root { --gold: #E6AF2E; --rose: #FF0055; --bg: #03071E; --royal-blue: #1A1A2E; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+
+        /* Background Galaxy */
+        #star-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        /* Entrance Curtain */
+        #curtain {
+            position: fixed; inset: 0; background: radial-gradient(circle, #222, #000); z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: 2.5s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-family: 'Dancing Script', cursive; font-size: 8rem; color: var(--gold); text-shadow: 0 0 30px var(--gold); }
+        
+        /* Novel Section */
+        .section-paper { padding: 120px 20px; background: #fdf6e3; color: #2c3e50; position: relative; }
+        .novel-card { max-width: 900px; margin: 0 auto; padding: 60px; background: white; border-radius: 5px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-left: 10px solid #880d1e; line-height: 2; }
+
+        /* Parents & Family Section - The New Addition */
+        .family-tribute { padding: 120px 20px; background: linear-gradient(to bottom, #03071E, #1A1A2E); text-align: center; position: relative; }
+        .family-box { border: 2px dashed var(--gold); padding: 40px; border-radius: 30px; max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.03); }
+        .family-box h2 { font-family: 'Playfair Display'; color: var(--gold); font-size: 2.5rem; margin-bottom: 20px; }
+        .family-box p { font-style: italic; color: #ddd; font-size: 1.1rem; }
+
+        /* Virtual Gift Cards */
+        .gift-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 50px; }
+        .gift-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(230,175,46,0.2); width: 320px; transition: 0.5s; }
+        .gift-card:hover { transform: translateY(-15px); border-color: var(--rose); box-shadow: 0 0 30px rgba(255, 0, 85, 0.3); }
+
+        /* Cake Palace */
+        .cake-palace { padding: 100px 20px; text-align: center; }
+        .cake { width: 280px; height: 160px; background: #3d2317; margin: 80px auto; position: relative; border-radius: 20px 20px 5px 5px; }
+        .candle { width: 12px; height: 50px; background: white; position: absolute; top: -50px; left: 50%; transform: translateX(-50%); }
+        .flame { width: 20px; height: 30px; background: orange; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); border-radius: 50% 50% 20% 20%; box-shadow: 0 0 20px orange; animation: flicker 0.4s infinite; }
+        @keyframes flicker { 0% { opacity: 0.8; } 100% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
+
+        /* Footer */
+        footer { padding: 80px; background: #000; text-align: center; border-top: 1px solid #222; }
+        .urdu { font-family: 'Noto Nastaliq Urdu', serif; font-size: 2rem; direction: rtl; color: var(--gold); margin-top: 20px; }
+
+        .btn-magic { background: var(--gold); border: none; padding: 15px 40px; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 1.2rem; transition: 0.4s; }
+        .btn-magic:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <div id="curtain" onclick="openMagic()">
+        <h1 style="color: var(--gold); font-family: 'Dancing Script'; font-size: 3.5rem;">For Wajeeha</h1>
+        <p style="color: #666; letter-spacing: 5px;">[ CLICK TO UNLOCK HER UNIVERSE ]</p>
+    </div>
+
+    <audio id="music" loop><source src="https://www.soundjay.com/misc/sounds/happy-birthday-1.mp3" type="audio/mpeg"></audio>
+
+    <section class="hero">
+        <p style="letter-spacing: 10px; color: #888;">CHAPTER 2026</p>
+        <h1>Wajeeha</h1>
+        <div style="display: flex; gap: 20px; margin: 30px 0;">
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid var(--gold);"><span id="days" style="font-size: 2rem; font-weight: bold; color: var(--rose);">00</span> Days</div>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid var(--gold);"><span id="hours" style="font-size: 2rem; font-weight: bold; color: var(--rose);">00</span> Hrs</div>
+        </div>
+        <p style="font-style: italic;">"A story of grace, kindness, and infinite stars."</p>
+    </section>
+
+    <section class="section-paper">
+        <div class="novel-card">
+            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 30px;">The Reader's Legacy</h2>
+            <p style="font-size: 1.3rem;">
+                "Wajeeha, aap un novels ki tarah hain jinhain parhte hue waqt thahar jata hai. Aapki madad karne ki fitrat aur aapka ye mukhlish andaaz hi aapko dunya se alag banata hai. Allah kare aapki zindagi ka har naya chapter pehle se zyada khoobsurat aur kamyabi se bhara ho."
+            </p>
+            <div class="urdu">
+                آپ کی مسکراہٹ ہمیشہ سلامت رہے اور آپ کی ہر دعا قبول ہو۔
+            </div>
+            <p style="margin-top: 40px; font-weight: bold; font-family: 'Dancing Script'; font-size: 1.8rem;">— Mehtab Ali Shah</p>
+        </div>
+    </section>
+
+    <section class="family-tribute">
+        <div class="family-box">
+            <h2>Blessings of the Roots</h2>
+            <p>
+                "Wajeeha, aap jaisi mukhlish beti un parents ki mehnat ka nateeja hoti hai jo apne bachon ko neki aur insaniyat sikhate hain. 
+                Meri taraf se aapke Walidain (Parents) ke liye dheron adab aur duaaein. 
+                Allah unka saya aap par hamesha salamat rakhe aur wo aapki har kamyabi ko apni ankhon se dekhein."
+            </p>
+            <div style="margin-top: 20px; color: var(--gold); font-size: 1.5rem;">⭐ ⭐ ⭐</div>
+            <p style="margin-top: 20px; font-size: 1rem; color: #aaa;">"Behtreen aulad apne maa-baap ke liye sadqa-e-jariya hoti hai, aur aap waqayi unka fakhr hain."</p>
+        </div>
+    </section>
+
+    <section style="padding: 100px 20px; text-align: center;">
+        <h2 style="font-size: 3rem; font-family: 'Playfair Display'; color: var(--gold);">Virtual Gifts & Wishes</h2>
+        <div class="gift-grid">
+            <div class="gift-card">
+                <h3 style="color: var(--gold);">🎓 Success</h3>
+                <p>Meri dua hai ke aap jis bhi maidan mein qadam rakhein, kamyabi aapke qadam choome. Aapki mehnat rang laye.</p>
+            </div>
+            <div class="gift-card">
+                <h3 style="color: var(--gold);">🛡️ Protection</h3>
+                <p>Allah aapko har buri nazar aur har shar se mehfooz rakhe. Aap hamesha hifz-o-aman mein rahein.</p>
+            </div>
+            <div class="gift-card">
+                <h3 style="color: var(--gold);">💖 Joy</h3>
+                <p>Khushiyon ka ek aisa samundar aapki zindagi mein aaye jiska koi kinara na ho. Aap hamesha muskurati rahein.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cake-palace">
+        <h2 style="font-family: 'Dancing Script'; font-size: 4rem; color: var(--gold);">Blow the Candle, Wajeeha!</h2>
+        <div class="cake">
+            <div class="candle"><div class="flame" id="flame"></div></div>
+        </div>
+        <button class="btn-magic" onclick="celebrate()">Make a Wish & Blow 🌬️</button>
+    </section>
+
+    <footer>
+        <p style="letter-spacing: 5px; opacity: 0.6;">A MASTERPIECE CREATED EXCLUSIVELY FOR</p>
+        <h2 style="font-family: 'Dancing Script'; font-size: 4rem; color: var(--gold); margin: 20px 0;">Wajeeha</h2>
+        <p style="opacity: 0.4;">With Deep Respect & Well Wishes<br>From Mehtab Ali Shah | 2026</p>
+    </footer>
+
+    <script>
+        function openMagic() {
+            document.getElementById('curtain').style.transform = 'translateY(-100%)';
+            document.getElementById('music').play();
+            createBalloons();
+        }
+
+        function celebrate() {
+            document.getElementById('flame').style.display = 'none';
+            var duration = 15 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({ particleCount: 15, angle: 60, spread: 80, origin: { x: 0 }, colors: ['#D4AF37', '#FF0055'] });
+                confetti({ particleCount: 15, angle: 120, spread: 80, origin: { x: 1 }, colors: ['#D4AF37', '#FF0055'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+            alert("HAPPY BIRTHDAY WAJEEHA! 🎉 May your parents' prayers always protect you!");
+        }
+
+        function createBalloons() {
+            const colors = ['#D4AF37', '#FF0055', '#FFFFFF'];
+            setInterval(() => {
+                const b = document.createElement('div');
+                b.style.position = 'absolute';
+                b.style.bottom = '-100px';
+                b.style.left = Math.random() * 100 + 'vw';
+                b.style.width = '60px';
+                b.style.height = '80px';
+                b.style.borderRadius = '50%';
+                b.style.background = colors[Math.floor(Math.random()*colors.length)];
+                b.style.opacity = '0.7';
+                b.style.zIndex = '-1';
+                b.style.transition = '10s linear';
+                document.body.appendChild(b);
+                setTimeout(() => { b.style.transform = 'translateY(-120vh)'; }, 100);
+                setTimeout(() => { b.remove(); }, 10000);
+            }, 600);
+        }
+
+        // Timer
+        const target = new Date("March 3, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const gap = target - now;
+            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        }, 1000);
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Eternal Feeling | Wajeeha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;900&family=Noto+Nastaliq+Urdu&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<style>
+
+:root{
+--gold:#E6AF2E;
+--rose:#FF0055;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:'Poppins',sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+/* Sky */
+#sky{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-3;
+background:radial-gradient(circle at bottom,#1a1a2e,#000);
+}
+
+/* Hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+width:15px;
+height:15px;
+background:var(--rose);
+transform:rotate(45deg);
+animation:float 8s linear infinite;
+opacity:.6;
+z-index:-2;
+}
+.heart::before,.heart::after{
+content:'';
+position:absolute;
+width:15px;
+height:15px;
+background:var(--rose);
+border-radius:50%;
+}
+.heart::before{top:-8px;left:0}
+.heart::after{left:-8px;top:0}
+@keyframes float{
+to{transform:translateY(-120vh) rotate(360deg)}
+}
+
+/* Rose Petals */
+.petal{
+position:fixed;
+top:-40px;
+width:20px;
+height:20px;
+background:radial-gradient(circle,#ff4d6d,#b3003c);
+border-radius:50% 50% 50% 0;
+transform:rotate(45deg);
+animation:fall linear infinite;
+opacity:.8;
+z-index:-1;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* Intro */
+#intro{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10000;
+transition:2s;
+}
+
+/* Name Reveal */
+.name{
+font-family:'Dancing Script';
+font-size:9rem;
+color:var(--gold);
+opacity:0;
+animation:fadeIn 4s forwards;
+animation-delay:1s;
+}
+@keyframes fadeIn{
+to{opacity:1}
+}
+
+.enter-btn{
+margin-top:40px;
+border:2px solid var(--gold);
+padding:15px 50px;
+background:transparent;
+color:var(--gold);
+font-family:'Dancing Script';
+font-size:2rem;
+border-radius:50px;
+cursor:pointer;
+transition:.5s;
+}
+.enter-btn:hover{
+background:var(--gold);
+color:black;
+box-shadow:0 0 40px var(--gold);
+}
+
+/* Sections */
+.section{
+padding:180px 20px;
+text-align:center;
+max-width:900px;
+margin:auto;
+opacity:0;
+transform:translateY(60px);
+transition:1.2s;
+}
+.section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.glass{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+padding:60px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.urdu{
+font-family:'Noto Nastaliq Urdu';
+direction:rtl;
+font-size:2rem;
+margin-top:40px;
+color:var(--gold);
+line-height:2.2;
+}
+
+/* Secret Popup */
+#secret{
+position:fixed;
+bottom:30px;
+right:30px;
+background:rgba(0,0,0,.8);
+padding:25px;
+border-radius:20px;
+display:none;
+max-width:300px;
+border:1px solid var(--gold);
+}
+
+/* Footer */
+footer{
+padding:120px;
+text-align:center;
+background:black;
+border-top:1px solid rgba(255,255,255,.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="sky"></div>
+
+<div id="intro">
+<div class="name">Wajeeha</div>
+<button class="enter-btn" onclick="enter()">Enter</button>
+</div>
+
+<audio id="bgmusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b2c1f7c1c.mp3?filename=romantic-piano-ambient-110397.mp3">
+</audio>
+
+<section class="section">
+<div class="glass">
+<h2 style="font-family:'Playfair Display';color:var(--gold);font-size:3rem;">Not Just A Name</h2>
+<p style="margin-top:40px;font-size:1.2rem;line-height:2">
+Some souls are poetry without words.  
+Some personalities are light without noise.  
+You are both.
+</p>
+
+<div class="urdu">
+"وہ لڑکیاں خاموشی میں بھی وقار رکھتی ہیں،
+اور لفظوں سے زیادہ اپنے کردار سے پہچانی جاتی ہیں۔"
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="glass">
+<h2 style="color:var(--gold);font-family:'Playfair Display';font-size:3rem;">Dua For You 🤍</h2>
+<p style="margin-top:40px;line-height:2">
+May Allah protect your smile.  
+May He fill your life with peace and success.  
+May every chapter of your life be brighter than the previous one.
+</p>
+</div>
+</section>
+
+<section class="section">
+<div class="glass">
+<h2 style="color:var(--gold);font-family:'Playfair Display';font-size:3rem;">For Your Parents 🌹</h2>
+<p style="margin-top:40px;line-height:2">
+May Allah reward your Walidain for raising such a graceful daughter.  
+May their shadow always remain over you.
+</p>
+
+<div class="urdu">
+"بیٹی اگر باوقار ہو تو والدین کی تربیت بولتی ہے۔"
+</div>
+</div>
+</section>
+
+<footer>
+<h2 style="font-family:'Dancing Script';color:var(--gold);font-size:3rem;">With Deep Respect & Best Wishes</h2>
+<p style="margin-top:20px;opacity:.6;">
+Wishing you endless happiness and success always.
+</p>
+<p style="margin-top:40px;opacity:.4;">
+Designed & Developed with sincerity by <strong>Mehtab Ali Shah</strong> | 2026
+</p>
+</footer>
+
+<div id="secret">
+🌹 You are rare. Stay that way.
+</div>
+
+<script>
+
+/* Romantic Music */
+function enter(){
+document.getElementById("intro").style.transform="translateY(-100%)";
+document.getElementById("bgmusic").play();
+}
+
+/* Hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+},800);
+
+/* Rose Petals */
+for(let i=0;i<30;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(6+Math.random()*5)+"s";
+document.body.appendChild(p);
+}
+
+/* Fireworks */
+setInterval(()=>{
+confetti({
+particleCount:100,
+spread:120,
+origin:{x:Math.random(),y:Math.random()*0.5},
+colors:["#E6AF2E","#FF0055","#ffffff"]
+});
+},5000);
+
+/* Scroll Animation */
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top < window.innerHeight-100){
+sec.classList.add("visible");
+}
+});
+});
+
+/* Secret Popup */
+setTimeout(()=>{
+document.getElementById("secret").style.display="block";
+},8000);
+
+</script>
+
+</body>
+</html>
